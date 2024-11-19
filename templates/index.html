@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Monthsary!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #ff4b6e;
+            margin-bottom: 1rem;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .heart {
+            color: #ff4b6e;
+            font-size: 50px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .message {
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        button {
+            background: #ff4b6e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 75, 110, 0.3);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 75, 110, 0.4);
+        }
+        .hidden {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .visible {
+            display: block;
+            opacity: 1;
+        }
+        .floating-heart {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Happy Monthsary!</h1>
+        <div class="message">
+            To my dearest,<br>
+            Every month with you is a blessing that I cherish deeply.
+        </div>
+        <button onclick="showLove()">Click for a surprise!</button>
+        <div id="special-message" class="hidden message">
+            Thank you for being the most amazing girlfriend.<br>
+            You make every day special, and I'm so grateful to have you in my life.<br>
+            I love you more with each passing day! ❤️
+        </div>
+    </div>
+
+    <script>
+        function showLove() {
+            const message = document.getElementById('special-message');
+            message.classList.remove('hidden');
+            message.classList.add('visible');
+            
+            // Create floating hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createHeart(), i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animation = `float ${Math.random() * 2 + 3}s linear`;
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                document.body.removeChild(heart);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
